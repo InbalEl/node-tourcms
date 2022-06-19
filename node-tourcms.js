@@ -551,6 +551,20 @@ TourCMS.prototype.showPromo = function(a) {
 
 };
 
+//Suppliers
+// show supplier
+TourCMS.prototype.showSupplier = function(a) {
+
+  if(typeof a === 'undefined')
+    a = {};
+
+  if(typeof a.channelId === 'undefined')
+    a.channelId = this.options.channelId;
+
+  a.path = '/c/supplier/show.xml?supplier_id=' + a.supplierId;
+
+  this.makeRequest(a);
+};
 
 // Bookings
 
