@@ -568,6 +568,49 @@ TourCMS.prototype.showSupplier = function(a) {
 
 // Bookings
 
+// List Bookings
+TourCMS.prototype.listBookings = function(a) {
+
+  if(typeof a === 'undefined')
+    a = {};
+
+  // Convert/set search params
+  // If undefined
+  if(typeof a.qs === "undefined")
+    a.qs = {};
+
+  a.qs = querystring.stringify(a.qs);
+
+  // Channel ID
+  // If undefined, use object level channelId
+  if(typeof a.channelId === "undefined")
+    a.channelId = this.options.channelId;
+
+  // Set API path
+  if(parseInt(a.channelId)===0)
+    a.path = '/p/bookings/list.xml?' + a.qs;
+  else
+    a.path = '/c/bookings/list.xml?' + a.qs;
+
+  // Sanitise response, total_tour_count always set
+  // Tours is an array if empty
+
+  a.processor = function(response, callback) {
+
+    // Ensure we have a total tour count
+    if(typeof response.total_bookings_count === 'undefined')
+      response.total_bookings_count = '0';
+
+    // Ensure we have an array of tours
+    response.bookings = [].concat(response.bookings);
+
+    callback(response);
+  };
+
+  this.makeRequest(a);
+
+};
+
 // Seach Bookings
 TourCMS.prototype.searchBookings = function(a) {
 

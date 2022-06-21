@@ -433,6 +433,25 @@ TourCMS.showSupplier({
 
 #### Search bookings
 
+https://www.tourcms.com/support/api/mp/booking_list.php
+
+The following example lists bookings made in the first two weeks of January 2016.
+
+```js
+TourCMS.searchBookings({
+  channelId: 3930,
+  qs: {
+    made_date_start: "2016-01-01",
+    made_date_end: "2016-01-14"
+  },
+  callback: function(response) {
+    console.log(response);
+  }
+});
+```
+
+#### Search bookings
+
 http://www.tourcms.com/support/api/mp/booking_search.php
 
 The following example searches for bookings made in the first two weeks of January 2016.
