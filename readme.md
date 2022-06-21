@@ -27,6 +27,7 @@ Node wrapper for the [TourCMS](http://www.tourcms.com/) [API](http://www.tourcms
     * [Check Tour Availability](#check-tour-availability)
     * [Check Option Availability](#check-option-availability)
     * [Show Promo Code](#show-promo-code)
+  * [Supplier APIs] (#suuplier-apis)
   * [Booking APIs](#booking-apis)
     * [Search bookings](#search-bookings)
     * [Show booking](#show-booking)
@@ -404,6 +405,24 @@ The following example tries to show promo code 'TENPERCENT' on Channel 3930.
 TourCMS.showPromo({
   channelId: 3930,
   promo: 'TENPERCENT',
+  callback: function(response) {
+    console.log(response);
+  }
+});
+```
+
+### Supplier APIs
+
+#### Show supplier
+
+https://www.tourcms.com/support/api/mp/supplier_show.php
+
+The following example retrieves the supplier details od the supplier matching the id given.
+
+```js
+TourCMS.showSupplier({
+  supplierId: 30,
+  channelId: 3930,
   callback: function(response) {
     console.log(response);
   }
